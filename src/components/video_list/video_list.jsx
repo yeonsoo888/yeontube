@@ -3,8 +3,8 @@ import VideoItem from '../video_item/video_item';
 
 function VideoList(props) {
     return (
-        <div>
-            <ul>
+        <div className="youtube">
+            <ul className="youtube__list">
                 {
                     props.videos.map((video) => {
                         return (
