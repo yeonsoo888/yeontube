@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import './scss/style.scss';
+import Header from './components/header';
 import VideoList from './components/video_list/video_list';
+import YoutubeServ from './servvice/youtube';
 
 function App() {
   const [videos,setVideos] = useState([]);
+  const [inputTxt,setInputTxt] = useState("");
+
+  const youtube = new YoutubeServ(process.env.REACT_APP_YOUTUBE_KEY,{
+    maxLength: 20,
+  });
 
   useEffect( () => {
-    const requestOptions = {
-      method: "GET",
-      redirect: 'follow',
-    }
-    fetch(
-      'https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=AIzaSyD7UNO0N91I_6zctHOaeo8sGUTB5E_bnhg',
-      requestOptions
-    )
-      .then(response => response.json())
-      .then(result => setVideos(result.items))
-      .catch(error => console.log('error', error));
+    youtube.mostPopular()
+    .then(res => {
+      setVideos([...res]);
+    })
   },[]);
-
+  
+  const handleSearch = (e) => {
+    
+    e.preventDefault();
+    youtube.search(inputTxt)
+    .then(res => {
+      setVideos([...res]);
+    })
+  }
 
   return (
     <div className="App">
+      <Header handleSearch={handleSearch} setInputTxt={setInputTxt} />
       <VideoList videos={videos} />
     </div>
   );
