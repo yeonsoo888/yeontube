@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './scss/style.scss';
 import Header from './components/header';
-import VideoList from './components/video_list/video_list';
+import VideoList from './components/video_list';
 import YoutubeServ from './servvice/youtube';
 
 function App() {
+  const [isView,setIsView] = useState(false);
   const [videos,setVideos] = useState([]);
   const [inputTxt,setInputTxt] = useState("");
 
@@ -20,18 +21,18 @@ function App() {
   },[]);
   
   const handleSearch = (e) => {
-    
     e.preventDefault();
     youtube.search(inputTxt)
     .then(res => {
       setVideos([...res]);
+      setIsView(false);
     })
   }
 
   return (
     <div className="App">
-      <Header handleSearch={handleSearch} setInputTxt={setInputTxt} />
-      <VideoList videos={videos} />
+      <Header handleSearch={handleSearch} setInputTxt={setInputTxt} setIsView={setIsView}/>
+      <VideoList videos={videos} setIsView={setIsView} isView={isView} />
     </div>
   );
 }

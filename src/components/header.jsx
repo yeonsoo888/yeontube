@@ -1,14 +1,14 @@
 import React , {useRef} from "react";
 
-function Header({handleSearch,setInputTxt}) {
+function Header({handleSearch,setInputTxt,setIsView}) {
     const path = process.env.PUBLIC_URL;
 
     return (
         <header className="header">
             <div className="inner">
-                <h1 className="logo">
+                <h1 className="logo" onClick={()=>{setIsView(false)}}>
                     <img src={`${path}/images/youtubeIcon.png`} alt="" />
-                    <p>yeontube</p>
+                    <p>YeonTube</p>
                 </h1>
                 <form onSubmit={(e) => {handleSearch(e)}}>
                     <div className="formInner">

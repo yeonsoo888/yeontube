@@ -1,5 +1,5 @@
-html, body { margin: 0; width: 100%; position:relative; padding: 0; font-size: 0.625em;}
-* {margin:0; padding:0; list-style:none; text-decoration:none; font-family: NanumSquareRound; box-sizing: border-box; word-break: keep-all;}
+html, body { margin: 0; width: 100%; position:relative; padding: 0; font-size: 0.625em; background: #eaeaea;}
+* {margin:0; padding:0; list-style:none; text-decoration:none; font-family: 'Noto Sans KR', sans-serif; box-sizing: border-box; word-break: keep-all; }
 
 ul>li>a { text-decoration:none; }
 a {color: #333; text-decoration: none;}
@@ -14,13 +14,14 @@ button {cursor: pointer;}
 .inner {padding: 0 10px; max-width: 1420px; margin: 0 auto;}
 
 .header {
-    height: 5.6rem;
+    position: fixed;; left: 0; top: 0; width: 100%; z-index: 5;
+    background: #fff; height: 5.6rem; border-bottom: 1px solid #ddd;
 
     .inner {
         display: flex; height: 100%; justify-content: space-between;
         .logo {
-            display: flex; align-items: center; height: 100%; font-weight: 700;
-            p {font-size: 1.6rem; margin: 0 0 0 0.2rem;}
+            display: flex; align-items: center; height: 100%; cursor: pointer;
+            p {font-size: 1.6rem; margin: 0 0 0 0.2rem; font-weight: 700;}
         }
     }
 
@@ -28,7 +29,7 @@ button {cursor: pointer;}
         display: flex; align-items: center;
         height: 100%;
         .formInner { 
-            display: flex; align-items: center; padding: 0 4rem;
+            display: flex; align-items: center;
             height: 3.6rem;
             input {
                 width: 52rem; height: 100%;  border: 1px solid #ccc; padding: 0 1rem; font-size: 1.6rem;
